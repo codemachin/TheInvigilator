@@ -27,8 +27,8 @@ exports.passportMiddleware = function(passport,app) {
     // setting up client id and client secret
 
     passport.use(new Strategy({
-        clientID: '1868912793424127',
-        clientSecret: '3dfd97134dd3154f204847e24f960d18',
+        clientID: '131859044140081',
+        clientSecret: 'e6225b5ff28d6dd54c7baa7b218132df',
         callbackURL: 'http://theinvigilator.ga/login/facebook/return',
         /////////////////////////////////////// down - localhost ////////////////////////////////////////
         /*clientID: '359580641139615',
