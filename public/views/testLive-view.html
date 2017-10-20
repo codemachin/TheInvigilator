@@ -1,0 +1,81 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <img class="navbar-brand img-responsive" src="img/file.png" alt="logo" style="max-width: 35px">
+  <a class="navbar-brand" href="#/home" style='font-family: "Raleway", Helvetica, Arial, sans-serif;'><b>The Invigilator</b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    
+
+    <ul class="navbar-nav my-2 my-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" style="color: #00e5ff">Hi,&nbsp;<span class="capitalize">{{myLive.profile.user.firstName}}</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/#/home">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/#/allResult">All Results</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/#/takeatest">Take a Test</a>
+      </li>
+      
+      <li class="nav-item active">
+        <a class="nav-link" ng-click="myLive.logout()" href="javascript:;"><span></span>Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div ng-if="myLive.savmes" class="alert alert-warning" role="alert" style="text-align: center;">
+	<h3>Recent test was saved on {{myLive.savmes | date:'medium'}}</h3>
+	(due to accidental refresh or back which was not supposed to happen)
+</div>
+
+<div class="container">
+	<div class="card" style="margin-top: 40px;padding: 3%">
+		<div ng-if="myLive.min" class="alert text-center alert-danger" role="alert">
+			<h3 style="margin-bottom: 30px; display: inline;">Time Remaining ~ </h3><h1 style="margin-bottom: 30px;display: inline;">{{myLive.min}} mins {{myLive.sec}} secs</h1>
+		</div>
+		<div class="alert alert-info" role="alert">
+			<h2>Question {{myLive.count+1}} - {{myLive.question.question}}</h2>
+
+			<div class="row" style="margin-top: 40px">
+				<div class="radio col-sm-6">
+					
+			          <label class="form-check-label">
+			            <input class="form-check-input" type="radio" name="gridRadios"  ng-model="test" ng-click="myLive.saveAnswer('optionA')" id="gridRadios1" value="1">
+			            A)&nbsp;{{myLive.question.optionA}}
+			          </label>
+			          <br><br>
+			          <label class="form-check-label" style="margin-bottom: 7%">
+			            <input class="form-check-input" type="radio" name="gridRadios"  ng-model="test" ng-click="myLive.saveAnswer('optionB')" id="gridRadios1" value="2">
+			            B)&nbsp;{{myLive.question.optionB}}
+			          </label>
+			        
+				</div>
+				<div class="radio col-sm-6">
+					  <label class="form-check-label">
+			            <input class="form-check-input" type="radio" name="gridRadios"  ng-model="test" ng-click="myLive.saveAnswer('optionC')" id="gridRadios1" value="3">
+			            C)&nbsp;{{myLive.question.optionC}}
+			          </label>
+			          <br><br>
+			          <label class="form-check-label">
+			            <input class="form-check-input" type="radio" name="gridRadios"  ng-model="test" ng-click="myLive.saveAnswer('optionD')" id="gridRadios1" value="4">
+			            D)&nbsp;{{myLive.question.optionD}}
+			          </label>
+				</div> 
+			</div>
+		</div>
+		<div class="alert alert-success" role="alert">
+			Selected option : {{myLive.sel}}
+		</div>
+		<div >
+			<button ng-show="myLive.count>0" type="button" ng-click="myLive.getPrev();test = null" class="btn btn-outline-danger" style="margin-top: 20px;padding-bottom: 12px;margin-right: 2%">Back</button> 
+			<button type="button" ng-hide="myLive.endOfTest==true" ng-click="myLive.getNext();test = null" class="btn btn-outline-primary" style="margin-top: 20px;padding-bottom: 12px;margin-right: 2%">Next</button>
+			<button type="button" ng-if="myLive.endOfTest==true" ng-click="myLive.saveFinal()" class="btn btn-outline-success" style="margin-top: 20px;padding-bottom: 12px">Final Submit</button> 
+		</div>     
+	</div>
+</div>

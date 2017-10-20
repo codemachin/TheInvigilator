@@ -1,0 +1,90 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <img class="navbar-brand img-responsive" src="img/file.png" alt="logo" style="max-width: 35px">
+  <a class="navbar-brand" href="#/dashboard" style='font-family: "Raleway", Helvetica, Arial, sans-serif;'><b>The Invigilator</b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    
+
+    <ul class="navbar-nav my-2 my-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" style="color: #00e5ff">Hi,&nbsp;<span class="capitalize">{{myDash.profile.user.firstName}}</span></a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="/#/dashboard">Dashboard</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/#/createTest">Create test </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/#/allResult">All Results</a>
+      </li>
+      
+      <li class="nav-item active">
+        <a class="nav-link" ng-click="myDash.logout()" href="javascript:;"><span></span>Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="container" style="padding-top: 30px">
+
+    <div class="card text-white bg-primary" ng-show="myDash.items.data.length<1" style="padding: 2%;align-items: center;color: #004d40;margin: 4% 8%;">
+      <h1>No test has been created yet. Please contact the admin or come again later.</h1><br>
+      <a href = "/#/createTest" class="btn btn-light" style="width: 140px">Create test now!</a>
+    </div>
+
+    <div class="row">
+      <div ng-hide="myDash.items.data.length<1" class="card text-white bg-info" style="color: #004d40;margin:15px;width: 100%">
+        <div class="card-header">
+          <h4>Please note :</h4>
+        </div>
+        <div class="card-body">
+          <ul>
+            <li>All tests must have as many questions as specified in the total questions in create test page.</li>
+            <li>Any test failing to meet the no of specified questions will be invalid and wont be shown to user until it filled will all questions.</li>
+            <li>Any test with incomplete questions will have the added questions in red and status as incomplete.</li>
+            <li>All tests with completed questions will have the added questions in green and status as complete.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6" ng-repeat="test in myDash.items.data">
+        <div class="card" ng-class = 'test.questions.length<test.totalQuestions ? "border-danger" : "border-success"' style="margin-bottom: 20px;">
+          <div class="card-header">
+              <h6 class="card-title">
+                Test Name ~&nbsp;{{test.name}}
+              </h6>
+          </div>
+          
+          <div class="card-body">
+            
+            <div class="card-text">
+              <div class="container">
+                Details ~&nbsp;{{test.details}}<br>
+                Total Questions ~&nbsp;{{test.totalQuestions}}<br>
+                Added Questions ~ &nbsp;{{test.questions.length}}<br>
+                Marks per Questions ~&nbsp;{{test.marksEach}}<br>
+                Total Time ~&nbsp;{{test.time}}<br>
+                Status ~&nbsp;<span ng-if="test.questions.length==test.totalQuestions" style="color: green"><b>Complete</b></span>
+                <span ng-if="test.questions.length<test.totalQuestions" style="color: green"><b>Incomplete</b></span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card-footer">
+            <b ng-if="test.questions.length==test.totalQuestions" style="color: green">Added Questions ~ {{test.questions.length}}</b>
+            <b ng-if="test.questions.length<test.totalQuestions" style="color: red">Added Questions ~ {{test.questions.length}}</b>
+            <div style="float: right">
+              <a href="/#/{{test._id}}/createQuestions" style="color: #4285F4">Edit</a>&nbsp;
+              <a href="" ng-click ="myDash.delete(test._id,$index)" style="color: red">Delete</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>

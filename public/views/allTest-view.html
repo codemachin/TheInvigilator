@@ -1,0 +1,115 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <img class="navbar-brand img-responsive" src="img/file.png" alt="logo" style="max-width: 35px">
+  <a class="navbar-brand" href="#/home" style='font-family: "Raleway", Helvetica, Arial, sans-serif;'><b>The Invigilator</b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    
+
+    <ul class="navbar-nav my-2 my-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" style="color: #00e5ff">Hi,&nbsp;<span class="capitalize">{{myDash.profile.user.firstName}}</span></a>
+      </li>
+      <li ng-show="myDash.profile.user.email!='admin@admin.com'" class="nav-item active">
+        <a class="nav-link" href="/#/home">Home</a>
+      </li>
+      <li ng-show="myDash.profile.user.email=='admin@admin.com'" class="nav-item active">
+        <a class="nav-link" href="/#/dashBoard">Dashboard</a>
+      </li>
+      <li ng-show="myDash.profile.user.email=='admin@admin.com'" class="nav-item active">
+        <a class="nav-link" href="/#/manageTest">Manage Test</a>
+      </li>
+      <li ng-show="myDash.profile.user.email=='admin@admin.com'" class="nav-item active">
+        <a class="nav-link" href="/#/createTest">Create Test</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/#/allResult">All Results</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" ng-click="myDash.logout()" href="javascript:;"><span></span>Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+  <div style="min-height: 100vh">
+    <div class="container" style="padding-top: 30px">
+
+          <div class="card text-white bg-primary" ng-show="myDash.items.data.length<1" style="padding: 2%;align-items: center;color: #004d40;margin: 4% 8%;">
+            <h1>No test has been created yet. Please contact the admin or come again later.</h1><br>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6" ng-repeat="test in myDash.items.data">
+              <div ng-show="test.questions.length==test.totalQuestions" class="card" style="margin-bottom: 20px;">
+                <div class="card-header">
+                  <h6 class="card-title">
+                      Test Name ~&nbsp;{{test.name}}
+                    </h6>
+                </div>
+                
+                <div class="card-body">
+                  
+                  <div class="card-text">
+                    <div class="container">
+                      Details ~&nbsp;{{test.details}}<br>
+                      Total Questions ~&nbsp;{{test.totalQuestions}}<br>
+                      Marks per Questions ~&nbsp;{{test.marksEach}}<br>
+                      Total Time ~&nbsp;{{test.time}} minutes<br>
+                      Test taken ~&nbsp;{{myDash.cArray[$index]}} times.
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card-footer">
+                  <a data-toggle="modal" data-target="#{{$index}}" style="cursor: pointer;color: #1A42BE"><h6>Attempt Test Now!</h6></a>
+                  <div class="modal fade bd-example-modal-lg" id="{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"  style="color:black">
+                    <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 ng-show="myDash.cArray[$index]<3" class="modal-title" id="exampleModalLabel">Read these instructions carefully before you start this test.</h5>
+                          <h5 ng-show="myDash.cArray[$index]>=3" class="modal-title" id="exampleModalLabel">Limit exceeded.</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div ng-show="myDash.cArray[$index]>=3" class="modal-body">
+                          <h2 style="color: #004d40">Maximum attempts reached. A test can be given only a max of 3 times.</h2>
+                        </div>
+                        <div ng-show="myDash.cArray[$index]<3" class="modal-body">
+                          <ul>
+                            <li><b>Test Instructions</b></li>
+                            <ol>
+                              <li>This test contains {{test.totalQuestions}} questions.</li>
+
+                              <li>Duration of this test is {{test.time}} minutes.</li>
+
+                              <li>Each test can be given a maximum of 3 times only.</li>
+
+                              <li>Your time will start when you see the questions. Once you start the test, you cannot pause it.</li>
+
+                              <li>Test will be submitted automatically once time is up.</li>
+
+                              <li>We take plagiarism and cheating of any kind very seriously and do not entertain any activities that are against the spirit of learning. Violations can lead to account suspension or permanent blacklisting from the system.</li>
+
+                              <li>If you reload the test or try to leave out in between, the answers, as much as you have answered, will be saved and will affect your overall analytics.</li>
+                            </ol>
+                          </ul>
+                          <b>Are you sure you want to start this test?</b>
+                        </div>
+                        <div class="modal-footer">
+                          <button ng-show="myDash.cArray[$index]<3" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                          <button ng-show="myDash.cArray[$index]<3" type="button" class="btn btn-success" modal-hide="{{test._id}}" len="{{test.questions.length}}" id="{{$index}}">Proceed</button>
+                          <button ng-show="myDash.cArray[$index]>=3" data-dismiss="modal" class="btn btn-primary" style="width: 160px">Try another test !!!</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>

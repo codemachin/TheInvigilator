@@ -1,0 +1,151 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <img class="navbar-brand img-responsive" src="img/file.png" alt="logo" style="max-width: 35px">
+  <a class="navbar-brand" href="#/dashboard" style='font-family: "Raleway", Helvetica, Arial, sans-serif;'><b>The Invigilator</b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    
+
+    <ul class="navbar-nav my-2 my-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" style="color: #00e5ff">Hi,&nbsp;<span class="capitalize">{{myDash.profile.user.firstName}}</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/#/createTest">Create test </a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="/#/manageTest">Manage test </a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="/#/allResult">All Results</a>
+      </li>
+      
+      <li class="nav-item active">
+        <a class="nav-link" ng-click="myDash.logout()" href="javascript:;"><span></span>Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="container" style="padding-top: 30px">
+
+    <div class="card mb-3">
+      <div class="card-header">
+        <i class="fa fa-table"></i>
+        All User Details
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" width="100%" id="dataTable" datatable="ng" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Tests Taken</th>
+                <th>Max Percentage</th>
+                <th>Min Percentage</th>
+                <th>Average Percentage</th>
+                <th>User Analytics</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>Name</th>
+                <th>Tests Taken</th>
+                <th>Max Percentage</th>
+                <th>Min Percentage</th>
+                <th>Average Percentage</th>
+                <th>User Analytics</th>
+              </tr>
+            </tfoot>
+            <tbody>
+              <tr ng-repeat="mark in myDash.marksAll" ng-if="mark.user.email!='admin@admin.com'">
+                <td>{{mark.user.firstName}}</td>
+                <td>{{mark.scores.length}}</td>
+                <td>
+                  <div ng-show="mark.scores.length>0" ng-repeat="marks in mark.scores | orderBy:'-percentage' | limitTo : 1 " >{{marks.percentage}} %</div>
+                  <div ng-show="mark.scores.length==0">0 %</div>
+                </td>
+                <td>
+                  <div ng-show="mark.scores.length>0" ng-repeat="marks in mark.scores | orderBy:'percentage' | limitTo : 1 " >{{marks.percentage}} %</div>
+                  <div ng-show="mark.scores.length==0">0 %</div>
+                </td>
+                <td>{{mark.avg}} %</td>
+                <td><a href="#/user/{{mark.user._id}}">View now!!!</a></td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer small text-muted">
+        Updated yesterday at 11:59 PM
+      </div>
+    </div>
+
+    <div class="card mb-3">
+      <div class="card-header">
+        <i class="fa fa-table"></i>
+        All Test Details
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" width="100%" id="dataTable" datatable="ng" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Test Name</th>
+                <th>Topper</th>
+                <th>Last in class</th>
+                <th>Highest percentage</th>
+                <th>Topper result</th>
+                <th>Topper Analytics</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>Test Name</th>
+                <th>Topper</th>
+                <th>Last in class</th>
+                <th>Highest percentage</th>
+                <th>Topper result</th>
+                <th>Topper Analytics</th>
+              </tr>
+            </tfoot>
+            <tbody>
+              <tr ng-repeat="test in myDash.testHelper">
+                <td>{{test.name}}</td>
+                <td>
+                  <div ng-repeat="score in test.scores | orderBy:'-percentage' | limitTo : 1 " >{{score.name}}</div>
+                </td>
+                <td>
+                  <div ng-repeat="score in test.scores | orderBy:'percentage' | limitTo : 1 " >{{score.name}}</div>
+                </td>
+                <td>
+                  <div ng-repeat="score in test.scores | orderBy:'-percentage' | limitTo : 1 " >{{score.percentage}} %</div>
+                </td>
+                <td>
+                  <div ng-repeat="score in test.scores | orderBy:'-percentage' | limitTo : 1 " >
+                    <a href="#/{{score.resultId}}/result">View result!!!</a>
+                  </div>
+                </td>
+                <td>
+                  <div ng-repeat="score in test.scores | orderBy:'-percentage' | limitTo : 1 " >
+                    <a href="#/user/{{score.userId}}">View now!!!</a>
+                  </div>
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer small text-muted">
+        Updated yesterday at 11:59 PM
+      </div>
+    </div>
+
+</div>

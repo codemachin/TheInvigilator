@@ -1,0 +1,32 @@
+
+<div class="bg-dark bgCustom" style="min-height: 100vh">
+
+    <div class="container" id="con" style="padding-top: 50px">
+
+      <div class="card card-login mx-auto mt-5">
+        <div class="card-header">
+          Reset Password
+        </div>
+        <div class="card-body">
+          <div class="text-center mt-4 mb-5">
+            <h4>Create new Password</h4>
+            <p>Enter new password</p>
+          </div>
+          <form ng-submit="myReset.updatePass()">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="control-label">Enter New Password</label>
+              <input type=password class="form-control" ng-model="myReset.pass" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter new password" required="">
+              <label for="exampleInputEmail2" class="control-label" style="margin-top: 10px">Re-Enter Password</label>
+              <input type=password class="form-control" ng-model="myReset.pass1" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter new password" required="">
+            </div>
+            <button class="btn btn-primary btn-block" type="submit" style="background:#004d40">Update Password</button>
+          </form>
+          <div class="text-center">
+            <a class="d-block small mt-3" href="#/register">Register an Account</a>
+            <a class="d-block small" href="#/">Login Page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>

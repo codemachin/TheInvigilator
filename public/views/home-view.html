@@ -1,0 +1,166 @@
+<div ng-show="myDash.show=='loading'" class="loader">
+  <h1 style="color: white;margin: 3%"> Generating charts......</h1>
+  <div class="loader-inner">
+    <div class="loader-line-wrap">
+      <div class="loader-line"></div>
+    </div>
+    <div class="loader-line-wrap">
+      <div class="loader-line"></div>
+    </div>
+    <div class="loader-line-wrap">
+      <div class="loader-line"></div>
+    </div>
+    <div class="loader-line-wrap">
+      <div class="loader-line"></div>
+    </div>
+    <div class="loader-line-wrap">
+      <div class="loader-line"></div>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <img class="navbar-brand img-responsive" src="img/file.png" alt="logo" style="max-width: 35px">
+  <a class="navbar-brand" ng-show = "myDash.email!='admin@admin.com'" href="#/home" style='font-family: "Raleway", Helvetica, Arial, sans-serif;'><b>The Invigilator</b></a>
+  <a class="navbar-brand" ng-show = "myDash.email=='admin@admin.com'" href="#/dashboard" style='font-family: "Raleway", Helvetica, Arial, sans-serif;'><b>The Invigilator</b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    
+
+    <ul class="navbar-nav my-2 my-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" style="color: #00e5ff">Hi,&nbsp;<span class="capitalize">{{myDash.profile.user.firstName}}</span></a>
+      </li>
+      <li ng-show="myDash.email=='admin@admin.com'" class="nav-item active">
+        <a class="nav-link" href="/#/dashboard">Dashboard</a>
+      </li>
+      <li ng-show="myDash.email=='admin@admin.com'" class="nav-item active">
+        <a class="nav-link" href="/#/manageTest">Manage Test</a>
+      </li>
+      <li ng-show="myDash.email=='admin@admin.com'" class="nav-item active">
+        <a class="nav-link" href="/#/createTest">Create Test</a>
+      </li>
+      <li ng-show="myDash.email!='admin@admin.com'" class="nav-item active">
+        <a class="nav-link" href="/#/takeatest">Take a Test</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/#/allResult">All Results</a>
+      </li>
+      
+      <li class="nav-item active">
+        <a class="nav-link" ng-click="myDash.logout()" href="javascript:;"><span></span>Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container-fluid" style="margin-top: 50px">
+  <div class="card text-white bg-primary" ng-show="myDash.items.length<1" style="padding: 2%;align-items: center;color: #004d40;margin: 0 8%;">
+    <h1>Analytics cannot be shown as no test is taken.</h1><br>
+    <a href = "/#/takeatest" ng-show="myDash.email!='admin@admin.com'" class="btn btn-light" style="width: 140px">Take a test now!</a>
+  </div>
+  <div class="row" ng-show="myDash.items.length>0">
+    <div class="col-sm-6">
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-area-chart"></i>
+          Test statistics
+        </div>
+        <div class="card-body">
+          <span ng-show="myDash.email=='admin@admin.com'">Name of Student : <span class="capitalize">{{myDash.user.firstName+" "+myDash.user.lastName}}</span><br></span>
+          Number of tests taken is {{myDash.items.length}}<br>
+          Average percentage is {{myDash.averageScore}} %<br>
+          Percentage Growth in last test is {{Math.round((myDash.chartPer[myDash.chartPer.length-1]-myDash.chartPer[myDash.chartPer.length-2])*100)/100}} %<br>
+          <span style="color: green" ng-if="myDash.chartPer[myDash.chartPer.length-1]-myDash.chartPer[myDash.chartPer.length-2]>0 || myDash.chartPer[myDash.chartPer.length-1]-myDash.chartPer[myDash.chartPer.length-2]==100"><b>Tip : Congrats!!! Your results show growth. Keep working hard.</b></span>
+          <span style="color: #FBBC05" ng-if="myDash.chartPer[myDash.chartPer.length-1]-myDash.chartPer[myDash.chartPer.length-2]==0 && myDash.chartPer[myDash.chartPer.length-1]-myDash.chartPer[myDash.chartPer.length-2]!=100"><b>Tip : No improvement. Work even harder.</b></span>
+          <span style="color: #EB4C3F" ng-if="myDash.chartPer[myDash.chartPer.length-1]-myDash.chartPer[myDash.chartPer.length-2]<0"><b>Tip : Your scores are dropping.You have to focus more on learning.</b></span>
+        </div>
+        <div class="card-footer small text-muted">
+          Last updated at {{myDash.lastUpdated | date : 'medium'}}
+        </div>
+      </div>
+    </div>
+    <div ng-show="myDash.email!='admin@admin.com'" class="col-sm-6">
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-area-chart"></i>
+          Tests given (last 4)
+        </div>
+        <div class="card-body">
+          <p class="tool" ng-repeat="result in myDash.items | orderBy : '-date' | limitTo : 4">
+            <a href="#/{{result._id}}/result">{{myDash.testArray[$index].name}}</a>
+            <span class="tooltiptext">&nbsp;on {{result.date | date : 'short'}}</span>
+          </p>
+        </div>
+        <div class="card-footer small">
+          <a href="#/allResult">View More ...</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-show="myDash.items.length>0" id = "pa">Performance Analysis</div>
+  <div ng-show="myDash.items.length>0" class="card mb-3">
+    <div class="card-header">
+      <i class="fa fa-area-chart"></i>
+      Performance graph for all Tests vs Time
+    </div>
+    <div class="card-body">
+      <canvas id="myAreaChart" start-chart width="100%" height="30"></canvas>
+    </div>
+    <div class="card-footer small text-muted">
+      Last updated at {{myDash.lastUpdated | date : 'medium'}}
+    </div>
+  </div>
+
+  <div  ng-show="myDash.items.length>0" class="row">
+    <div class="col-md-8">
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-bar-chart"></i>
+          Average performance in each test attempted once or more
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-8 my-auto">
+              <canvas ng-show="myDash.show=='show'" id="myBarChart" start-bar width="100" height="50"></canvas>
+              <div ng-show="myDash.show=='loading'">Please wait. Chart loading...</div>
+              <div ng-show="myDash.show=='hide'">Nothing to display as user has not scored in any test yet.</div>
+            </div>
+            <div class="col-sm-4 text-center my-auto">
+              <div ng-repeat="marks in myDash.marksAll | orderBy:'-percentage' | limitTo : 1 " class="h4 mb-0 text-primary">{{marks.percentage}} %</div>
+              <div class="small text-muted">Maximum Percentage</div>
+              <hr>
+              <div ng-show="myDash.averageScore" class="h4 mb-0 text-warning">{{myDash.averageScore}} %</div>
+              <div class="small text-muted">Average Percentage</div>
+              <hr>
+              <div ng-repeat="marks in myDash.marksAll | orderBy:'percentage' | limitTo : 1 " class="h4 mb-0 text-primary">{{marks.percentage}} %</div>
+              <div class="small text-muted">Minimum Percentage</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer small text-muted">
+          Last updated at {{myDash.lastUpdated | date : 'medium'}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-pie-chart"></i>
+          Avg. percentage in one test w.r.t. others
+        </div>
+        <div class="card-body">
+          <canvas ng-show="myDash.show=='show'" id="myPieChart" start-pie width="100%" height="71"></canvas>
+          <div ng-show="myDash.show=='loading'">Please wait. Chart loading...</div>
+          <div ng-show="myDash.show=='hide'">Nothing to display as user has not scored in any test yet.</div>
+        </div>
+        <div class="card-footer small text-muted">
+          Last updated at {{myDash.lastUpdated | date : 'medium'}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

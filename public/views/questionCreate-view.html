@@ -1,0 +1,174 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <img class="navbar-brand img-responsive" src="img/file.png" alt="logo" style="max-width: 35px">
+  <a class="navbar-brand" href="#/dashboard" style='font-family: "Raleway", Helvetica, Arial, sans-serif;'><b>The Invigilator</b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    
+
+    <ul class="navbar-nav my-2 my-lg-0">
+
+      <li class="nav-item active">
+        <a class="nav-link" style="color: #00e5ff">Hi,&nbsp;<span class="capitalize">{{myQuestionCreate.profile.user.firstName}}</span></a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="/#/dashboard">DashBoard</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/#/createTest">Create test </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/#/manageTest">Manage test </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/#/allResult">All Results</a>
+      </li>
+      
+      <li class="nav-item active">
+        <a class="nav-link" ng-click="myQuestionCreate.logout()" href="javascript:;"><span></span>Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="col-12">
+	<div class="row row-eq-height" >
+		<div class="col-md-8">
+			
+			<div class="card" style="background: #302D36;margin-top: 90px">
+				<div class="container-fluid input" style="padding: 4%;line-height: 20px;color: #ECEFF1">
+					<div ng-hide="myQuestionCreate.edif">
+						<span class="d-sm-none d-md-none d-lg-none d-xl-none"><a href="#/editTest/{{myQuestionCreate.items.data._id}}" style="color: #ECEFF1"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;Edit Test</a></span>
+						<div class="row">
+							<h4 class="col-sm-8">Create Questions</h4><span class="col-sm-4 d-none d-sm-block" style="text-align: right;"><a href="#/editTest/{{myQuestionCreate.items.data._id}}" style="color: #ECEFF1"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;Edit Test</a></span><br>
+						</div>
+						<h6>Test Name ~ {{myQuestionCreate.items.data.name}}</h6><br>
+						<h6>Test Details ~ {{myQuestionCreate.items.data.details}}</h6><br>
+						<h6>Marks per Question ~ {{myQuestionCreate.items.data.marksEach}}</h6><br>
+						<h6>Total Time ~ {{myQuestionCreate.items.data.time}}</h6><br>
+						<h6>Max. Questions ~ {{myQuestionCreate.items.data.totalQuestions}}</h6><br>
+						<h6>Total Marks ~ {{myQuestionCreate.items.data.marksEach*myQuestionCreate.items.data.totalQuestions}}</h6>
+						<br><br>
+						<div class="form-group">
+			              <label for="exampleInputEmail1">Question</label>
+			              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ng-model="myQuestionCreate.question" placeholder="question">
+			            </div>
+			            <div class="row">
+				            <div class="col-sm-6">
+				            	<div class="form-group">
+					              <label for="exampleInputEmail1">Option A</label>
+					              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ng-model="myQuestionCreate.optionA" placeholder="Option A">
+				            	</div>
+				            	<div class="form-group">
+					              <label for="exampleInputEmail1">Option B</label>
+					              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ng-model="myQuestionCreate.optionB" placeholder="Option B">
+					            </div>
+				            </div>
+				            <div class="col-sm-6">
+				            	<div class="form-group">
+					              <label for="exampleInputEmail1">Option C</label>
+					              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ng-model="myQuestionCreate.optionC" placeholder="Option C">
+				            	</div>
+				            	<div class="form-group">
+					              <label for="exampleInputEmail1">Option D</label>
+					              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ng-model="myQuestionCreate.optionD" placeholder="Option D">
+					            </div>
+				            </div>
+				        </div>
+				        
+				        <label for="sel1">~ Correct Option :</label>
+				        
+					      <select class="form-control" id="sel1" ng-model="myQuestionCreate.answer">
+					      	<option disabled selected value>Select an option</option>
+					        <option>optionA</option>
+					        <option>optionB</option>
+					        <option>optionC</option>
+					        <option>optionD</option>
+					      </select>
+					      <br>
+					      <button type="button" ng-click="myQuestionCreate.create()" class="btn btn-light">Create Question!</button>
+					      <a href="#/manageTest" class="btn btn-light">back to manage</a>
+					 </div>
+					 <div ng-show="myQuestionCreate.edif">
+					 	<div class="form-group">
+			              <label for="exampleInputEmail1">Question number {{myQuestionCreate.indexhel+1}}</label>
+			              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ng-model="myQuestionCreate.question" placeholder="question">
+			            </div>
+			            <div class="row">
+				            <div class="col-sm-6">
+				            	<div class="form-group">
+					              <label for="exampleInputEmail1">Option A</label>
+					              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ng-model="myQuestionCreate.optionA" placeholder="Option A">
+				            	</div>
+				            	<div class="form-group">
+					              <label for="exampleInputEmail1">Option B</label>
+					              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ng-model="myQuestionCreate.optionB" placeholder="Option B">
+					            </div>
+				            </div>
+				            <div class="col-sm-6">
+				            	<div class="form-group">
+					              <label for="exampleInputEmail1">Option C</label>
+					              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ng-model="myQuestionCreate.optionC" placeholder="Option C">
+				            	</div>
+				            	<div class="form-group">
+					              <label for="exampleInputEmail1">Option D</label>
+					              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ng-model="myQuestionCreate.optionD" placeholder="Option D">
+					            </div>
+				            </div>
+				        </div>
+				        
+				        <label for="sel1">~ Correct Option :</label>
+				        
+					      <select class="form-control" id="sel1" ng-model="myQuestionCreate.answer">
+					      	<option disabled selected value>Select an option</option>
+					        <option value="optionA">optionA</option>
+					        <option value="optionB">optionB</option>
+					        <option value="optionC">optionC</option>
+					        <option value="optionD">optionD</option>
+					      </select>
+					      <br>
+					      <button type="button" ng-click="myQuestionCreate.editQ()" class="btn btn-light">Edit Question!</button>
+					      <button type="button" ng-click="myQuestionCreate.editEnd()" class="btn btn-light">Close Editing Question!</button>
+					 </div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4" style="height: 100vh;overflow-y: scroll">
+			<div class="container" >
+				<div style="margin-top: 90px">
+					<h1 ng-hide="myQuestionCreate.items.data.questions.length>0" style="color: #ECEFF1">No Questions Created</h1>
+					<div ng-repeat="question in myQuestionCreate.items.data.questions">
+						<div class="card" style="margin-bottom: 20px;">
+							<div class="card-header">
+			          			<h6 class="card-title">
+		                			Q No.{{myQuestionCreate.items.data.questions.length-$index}}~&nbsp;{{question.question}}
+		              			</h6>
+			        		</div>
+		                
+		                <div class="card-body">
+		                  
+		                  <div class="card-text small">
+		                    <div class="row">
+		                    	<p class="col-6">A)&nbsp;{{question.optionA}}</p>
+		                    	<p class="col-6">B)&nbsp;{{question.optionB}}</p>
+		                    	<p class="col-6">C)&nbsp;{{question.optionC}}</p>
+		                    	<p class="col-6">D)&nbsp;{{question.optionD}}</p>
+		                    </div>
+		                  </div>
+		                </div>
+		                
+		                <div class="card-footer small">
+		                  Solution &nbsp;:&nbsp;{{question.answer}}
+		                  <a href="" ng-click ="myQuestionCreate.delete(question._id,$index)" style="color: red;float: right">Delete</a>
+		                  <a href="" ng-click ="myQuestionCreate.editFlag($index)" style="color: blue;float: right;margin-right: 10px">Edit</a>
+		                </div>
+		              </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

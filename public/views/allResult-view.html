@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <img class="navbar-brand img-responsive" src="img/file.png" alt="logo" style="max-width: 35px">
+  <a class="navbar-brand" ng-show = "myAllResult.email!='admin@admin.com'" href="#/home" style='font-family: "Raleway", Helvetica, Arial, sans-serif;'><b>The Invigilator</b></a>
+  <a class="navbar-brand" ng-show = "myAllResult.email=='admin@admin.com'" href="#/dashboard" style='font-family: "Raleway", Helvetica, Arial, sans-serif;'><b>The Invigilator</b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    
+
+    <ul class="navbar-nav my-2 my-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" style="color: #00e5ff">Hi,&nbsp;<span class="capitalize">{{myAllResult.profile.user.firstName}}</span></a>
+      </li>
+      <li ng-show = "myAllResult.email=='admin@admin.com'" class="nav-item active">
+        <a class="nav-link" href="/#/dashboard">DashBoard</a>
+      </li>
+      <li ng-show="myAllResult.email=='admin@admin.com'" class="nav-item active">
+        <a class="nav-link" href="/#/manageTest">Manage Test</a>
+      </li>
+      <li ng-show="myAllResult.email=='admin@admin.com'" class="nav-item active">
+        <a class="nav-link" href="/#/createTest">Create Test</a>
+      </li>
+      <li ng-show = "myAllResult.email!='admin@admin.com'" class="nav-item active">
+        <a class="nav-link" href="/#/home">Home</a>
+      </li>
+      <li ng-show = "myAllResult.email!='admin@admin.com'" class="nav-item active">
+        <a class="nav-link" href="/#/takeatest">Take a Test</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" ng-click="myAllResult.logout()" href="javascript:;"><span></span>Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container" style="align-items: center">
+  <div class="card text-white bg-primary" ng-show="myAllResult.testArray.length<1 && myAllResult.loaded" style="padding: 2%;align-items: center;color: #004d40;margin: 4% 8%;">
+    <h1>Results cannot be shown as no test is taken.</h1><br>
+    <a href = "/#/takeatest" ng-show="myAllResult.email!='admin@admin.com'" class="btn btn-light" style="width: 140px">Take a test now!</a>
+  </div>
+  <div ng-show = "myAllResult.testArray.length>0" class="col-sm-12">
+        <div class="card mx-auto mt-5" style="margin-bottom: 40px">
+          <div class="card-header">
+            All Results&nbsp;
+            <span class="clk" ng-click="myAllResult.sort()" style="float: right;color: blue;cursor: pointer;">Sort by date</span>
+            <span class="blk" style="float: right;margin-right: 20px">
+              <div class="select">
+                <select name="slct" id="slct" ng-change="myAllResult.testFilter()" ng-model="myAllResult.search">
+                  <option disabled selected value>Filter by Test</option>
+                  <option >All</option>
+                  <option ng-repeat="test in myAllResult.tests" ng-show="test.questions.length==test.totalQuestions" value="{{test._id}}">{{test.name}}</option>
+                </select>
+              </div>
+            </span>
+            <span ng-show = "myAllResult.email=='admin@admin.com'" id="spin" style="float: right;margin-right: 20px">
+              <input type="text" class="form-control" id="in" ng-model="search.userName" placeholder="Search Users">
+            </span>
+          </div>
+          <div style="padding: 2%">
+            <div ng-repeat= "result in myAllResult.testArray | filter : search | filter : { testId : myAllResult.testSorter } | orderBy : myAllResult.sortvar" class="alert alert-warning" role="alert" style="border: solid 2px maroon">
+                Test Name ~ {{result.name}}<br>
+                <span ng-show = "myAllResult.email=='admin@admin.com'">
+                  Attempted by : {{result.userName}}<br>
+                </span>
+                Attempted on : {{result.date | date:'medium'}}<br>
+                <a ng-href="/#/{{result.id}}/result">View Result</a>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>

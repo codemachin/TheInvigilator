@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="shopApp">
+ <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" type="image/png" href="img/file.png"/>
+    <title>The Invigilator</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,700|Roboto:400,900" rel="stylesheet">
+    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+  </head>
+<body class="bgCustom">
+  
+    <div ng-view style="min-height: 100vh">
+    <!--place for all views, its reserved-->
+    </div>
+
+    <footer ng-controller="myFooter as mainFooter"  ng-show="mainFooter.show==true" class="footmar">
+      <div>
+      <br>
+        Created and Designed by:
+        <br>
+        Vivek Shankar<br>
+        <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=viveksome@gmail.com" style="color: white;"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;viveksome@gmail.com</a><br>
+        <a href=""><i class="fa fa-facebook-square" aria-hidden="true" style="color: #3B5998"></i></a>
+        <a href=""><i class="fa fa-google-plus" aria-hidden="true" style="color: #D62221"></i></a>
+        <a href=""><i class="fa fa-twitter-square" aria-hidden="true" style="color: #1DA1F2"></i></a>
+
+      </div>
+    </footer>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.slim.js"></script>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.min.js"></script>
+<script src="vendor/popper/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<script src="vendor/chart/Chart.min.js"></script>
+<script src="vendor/datatables/jquery.dataTables.js"></script>
+<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.6.2/angular-datatables.min.js"></script>
+<script type="text/javascript" src="angular/app.js"></script>
+<script type="text/javascript" src="angular/routes.js"></script>
+<script type="text/javascript" src="angular/directives/chart.js"></script>
+<script type="text/javascript" src="angular/directives/modalHide.js"></script>
+<script type="text/javascript" src="angular/directives/scroll.js"></script>
+<script type="text/javascript" src="angular/services/service.js"></script>
+<script type="text/javascript" src="angular/services/authInterceptor.js"></script>
+<script type="text/javascript" src="angular/services/socket.js"></script>
+<script type="text/javascript" src="angular/services/chart.js"></script>
+<script type="text/javascript" src="angular/controllers/loginController.js"></script>
+<script type="text/javascript" src="angular/controllers/myFooter.js"></script>
+<script type="text/javascript" src="angular/controllers/404.js"></script>
+<script type="text/javascript" src="angular/controllers/signupController.js"></script>
+<script type="text/javascript" src="angular/controllers/testCreateController.js"></script>
+<script type="text/javascript" src="angular/controllers/testEditController.js"></script>
+<script type="text/javascript" src="angular/controllers/questionCreateController.js"></script>
+
+
+<script type="text/javascript" src="angular/controllers/dashController.js"></script>
+<script type="text/javascript" src="angular/controllers/allTestController.js"></script>
+<script type="text/javascript" src="angular/controllers/homeController.js"></script>
+<script type="text/javascript" src="angular/controllers/resultController.js"></script>
+<script type="text/javascript" src="angular/controllers/allResultController.js"></script>
+<script type="text/javascript" src="angular/controllers/testLiveController.js"></script>
+<script type="text/javascript" src="angular/controllers/resetController.js"></script>
+
+
+
+</html>

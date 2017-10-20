@@ -1,0 +1,191 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <img class="navbar-brand img-responsive" src="img/file.png" alt="logo" style="max-width: 35px">
+  <a class="navbar-brand" ng-show = "myResult.email!='admin@admin.com'" href="#/home" style='font-family: "Raleway", Helvetica, Arial, sans-serif;'><b>The Invigilator</b></a>
+  <a class="navbar-brand" ng-show = "myResult.email=='admin@admin.com'" href="#/dashboard" style='font-family: "Raleway", Helvetica, Arial, sans-serif;'><b>The Invigilator</b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    
+
+    <ul class="navbar-nav my-2 my-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" style="color: #00e5ff">Hi,&nbsp;<span class="capitalize">{{myResult.profile.user.firstName}}</span></a>
+      </li>
+      <li ng-show="myResult.profile.user.email=='admin@admin.com'" class="nav-item active">
+        <a class="nav-link" href="/#/dashboard">DashBoard</a>
+      </li>
+      <li ng-show="myResult.profile.user.email=='admin@admin.com'" class="nav-item active">
+        <a class="nav-link" href="/#/createTest">Create test </a>
+      </li>
+      <li ng-show="myResult.profile.user.email=='admin@admin.com'" class="nav-item active">
+        <a class="nav-link" href="/#/manageTest">Manage test </a>
+      </li>
+      <li ng-show="myResult.profile.user.email!='admin@admin.com'" class="nav-item active">
+        <a class="nav-link" href="/#/home">Home</a>
+      </li>
+      <li ng-show = "myResult.profile.user.email!='admin@admin.com'" class="nav-item active">
+        <a class="nav-link" href="/#/takeatest">Take a Test</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/#/allResult">All Results</a>
+      </li>
+      
+      <li class="nav-item active">
+        <a class="nav-link" ng-click="myResult.logout()" href="javascript:;"><span></span>Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="fluid" style="min-height: 100vh">
+  <div class="container-fluid" style="padding-top: 15px">
+    <div style="align-items: center">
+        <div class="col-sm-12">
+              <div class="card mx-auto mt-5" style="margin-bottom: 40px">
+                <div class="card-header">
+                  Result for test {{myResult.test.name}}
+                </div>
+                <div class="card-body">
+                  
+                  <div class="table-responsive">
+                      <table class="table table-bordered table-striped table-hover table-condensed ">
+                        <tbody>
+                          <tr>
+                            <th>
+                              Student Name
+                            </th>
+                            <td class="capitalize">
+                              {{myResult.user.firstName+" "+myResult.user.lastName}}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>
+                              Test Name
+                            </th>
+                            <td>
+                              {{myResult.test.name}}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th >
+                              Test Details
+                            </th>
+                            <td>
+                              {{myResult.test.details}}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>
+                              Marks per Question
+                            </th>
+                            <td>
+                              {{myResult.test.marksEach}}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>
+                              Total Number of Questions
+                            </th>
+                            <td>
+                              {{myResult.test.totalQuestions}}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>
+                              Test Duration
+                            </th>
+                            <td>
+                              {{myResult.test.time}} minutes
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>
+                              Total Marks
+                            </th>
+                            <td>
+                              {{myResult.test.totalQuestions*myResult.test.marksEach}}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>
+                              No. Of Correct Answers:
+                            </th>
+                            <td>
+                              {{myResult.totalCorrect}}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>
+                              Total Marks Scored
+                            </th>
+                            <td>
+                              {{myResult.totalCorrect*myResult.test.marksEach}}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>
+                              Percentage obtained
+                            </th>
+                            <td>
+                              {{(myResult.totalCorrect*myResult.test.marksEach)/(myResult.test.totalQuestions*myResult.test.marksEach)*100}} %
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>
+                              Test Completed in:
+                            </th>
+                            <td>
+                              {{myResult.result.timeTaken}}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                  </div>
+                  <hr style='background-color:#000000;border-width:0;color:#000000;height:2px;line-height:0;text-align:left;width:80%;'/>
+                  <div class="container">
+                      <div ng-repeat="question in myResult.test.questions">
+                        <div class="alert alert-success" role="alert">
+                          Question {{$index+1}} - <strong>{{question.question}}</strong>
+                          <div class="row" style="margin-top: 20px">
+                              <div class="col-sm-6">
+                                                                    
+                                        A)&nbsp;{{question.optionA}}<br>
+                                      
+                                        B)&nbsp;{{question.optionB}}
+                                      
+                              </div>
+                              <div class="col-sm-6">
+                                  
+                                        C)&nbsp;{{question.optionC}}<br>
+                                    
+                                        D)&nbsp;{{question.optionD}}
+                                     
+                              </div>
+                              <br><br><br><br>
+                              <div class="col-sm-3">
+                                Correct Answer - {{question.answer}}
+                              </div>
+                              <div class="col-sm-3">
+                                Your Answer - {{myResult.result.userAnswer[$index].answer}}
+                              </div>
+                              <div class="col-sm-3">
+                                Time taken - {{myResult.result.userAnswer[$index].timeEach/1000}} sec(s)
+                              </div>
+                              <div ng-if="question.answer==myResult.result.userAnswer[$index].answer" class="col-sm-3" style="background: #00C853;border-radius: 5px;color: white">
+                                Score ~ {{myResult.test.marksEach}}
+                              </div>
+                              <div ng-if="question.answer!=myResult.result.userAnswer[$index].answer" class="col-sm-3" style="background: #D50000;border-radius: 5px;color: white">
+                                Score ~ 0
+                              </div> 
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  
+                </div>
+              </div>
+        </div>
+  </div>
+</div>
