@@ -52,8 +52,8 @@ module.exports.controllerFunction = function(app) {
             subject: 'The Invigilator Password Reset',
             text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
               'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-              'http://' + req.headers.host + '/api/v1/reset/' + token + '\n\n' +
-              /*'http://theinvigilator.ga/api/v1/reset/' + token + '\n\n' +*/
+              /*'http://' + req.headers.host + '/api/v1/reset/' + token + '\n\n' +*/
+              'http://theinvigilator.ga/api/v1/reset/' + token + '\n\n' +
               'This link is valid only for 1 hr and will not be of any use after its expired.\n'+
               'If you did not request this, please ignore this email and your password will remain unchanged.\n'
           };
