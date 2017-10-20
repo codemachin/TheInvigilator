@@ -34,39 +34,39 @@ A live test taking system that allows an organisation to conduct a test in MCQ p
 	5) Facebook and google signup using passport js.
 	6) Forgot password functionality to resetting password.
 	7) User testing management panel - User facing 
-		~  Once the user logs into the system, he can see a dashboard containing the statistics of all tests he has 
-		taken. The statistics include the number of tests taken, average score and percentage growth etc.
+		~ Once the user logs into the system, he can see a dashboard containing the statistics of all tests he has 
+		  taken. The statistics include the number of tests taken, average score and percentage growth etc.
 		~ Multiple charts are shown that calculate various analytics for the user includes a area chart, bar graph 
-		and a pie chart.
+		  and a pie chart.
 		~ Dashboard contains the recent tests the user has given and on view more the user can see all his test
-		 results. All items are clickable.
+		  results. All items are clickable.
 		~ There is a “take a test” option in menu from which user can go to test taking page
 		~ On test taking page, user can see a list of tests he can appear for along with a button to start that test.
 	8) User test taking panel - User facing
 		~ Once user clicks on start test, he can see an instructions screen containing the rules of the test.
 		~ Once the user reads the instructions and accepts the rules (single accept button), The test timer will 
-		start and the screen should display the test questions and options associated with it.
+		  start and the screen should display the test questions and options associated with it.
 		~ User can choose only one option as answer for every question.
 		~ User can go back and forward in the test as he/she wishes and the test also shows what answer he/she had
 		 selected previously.
 		~ The test has a time limit. The test window automatically closes once the timeout occurs irrespective of
-		 how many questions have been answered. The system should submit the answers automatically.
+		  how many questions have been answered. The system should submit the answers automatically.
 		~ The test gives warning if user tries to reload or leave the page.
 		~ The test saves the test as much answered if the user reloads the test or tries to leave the page.
 		~ If the user completes the test before the time ends, he should see a final submit button which will submit
-		 his all answers. In case of timeouts, the user is redirected to the result page.
+		  his all answers. In case of timeouts, the user is redirected to the result page.
 		~ The system keeps track of how much time a user is taking for answering each question.
 		~ Socketio is used for live tracking the test timer and checking at constant interval that the timer is not
-		 hacked or paused.
-		~  On submission of test, result is shown to the student. He is shown the number of correct answers and
-		 percentage of marks obtained and other analytics.
+		  hacked or paused.
+		~ On submission of test, result is shown to the student. He is shown the number of correct answers and
+		  percentage of marks obtained and other analytics.
 	9) Test listing panel - Admin facing
 		~ Admin can create tests in the system.
 		~ Each test has a set of questions, each question containing at least 4 options and overall time limit of
-		 the test.
+		  the test.
 		~ Admin can create, edit, delete and view any tests, question or option.
 		~ While creating options for any question, admin can set a correct answer. This answer (flag) will actually
-		 help in automating the test evaluation process. 
+		  help in automating the test evaluation process. 
 	10) User analytics panel - Admin facing 
 		~ Admin can view details and analytics of all the users registered in the system.
 		~ Admin can view overall performance of the user in all his tests.
@@ -78,9 +78,9 @@ A live test taking system that allows an organisation to conduct a test in MCQ p
 	2) Chart js used to show 3 kinds of charts.
 	3) Each test can be given a maximum of 3 times.
 	4) The test prevents any kind of cheating or hacking the timer by automatically tallying the server time with the
-	 client time.
+	   client time.
 	5) It automatically resets the timer if time difference becomes greater than 3 secs. It keeps into consideration
-	 the round trip time between the client and the server.
+	   the round trip time between the client and the server.
 	6) Socket event stops the test if client timer fails or paused or is hacked.
 	7) Secured with JWT. Default JWT expiry time is set to 30 minutes.
 	8) Pure stateless REST apis.	
@@ -134,7 +134,7 @@ User facing :
 	3) The area chart shows timeline of the tests user has taken.
 	4) The bar graph shows the average performance for a single test given multiple times by the user.
 	5) The pe chart shows the average percentage in a scored over multiple times, with respect to other tests in
-	 the system. An user can know which is the most scoring subject for him.
+	   the system. An user can know which is the most scoring subject for him.
 	3) User can view all results on view more.
 	4) User can take a test maximum of three times. 
 	5) User cannot reload or leave the live test page once he starts it.

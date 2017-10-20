@@ -315,7 +315,7 @@ module.exports.controllerFunction = function(app) {
 
 
     // naming the router
-    app.use('/tests', testRouter);
+    app.use('/api/v1/tests', testRouter);
 
 
 

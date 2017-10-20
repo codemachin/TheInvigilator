@@ -172,7 +172,7 @@ module.exports.liveControllerFunction = function(app,server) {
 
     //////////////////////////////////// naming the router //////////////////////////////////////
      
-    app.use('/liveTest', testRouter);
+    app.use('/api/v1/liveTest', testRouter);
 
 
 
