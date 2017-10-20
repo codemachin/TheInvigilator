@@ -37,9 +37,9 @@ module.exports.controllerFunction = function(app) {
 
 //////////////////////////////////////// get user by id ////////////////////////////////////////
 
-    userRouter.get('/:id',function(req,res){
+    userRouter.get('/:id',expressJwt({secret: secret}),function(req,res){
 
-        userModel.findOne({'_id':req.params.id},expressJwt({secret: secret}),function(err,foundUser){
+        userModel.findOne({'_id':req.params.id},function(err,foundUser){
             if(err){
                 var myResponse = responseGenerator.generate(true,"some error"+err,500,null);
                 res.send(myResponse);
