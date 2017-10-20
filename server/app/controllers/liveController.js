@@ -109,7 +109,7 @@ module.exports.liveControllerFunction = function(app,server) {
         rightAnswer = [];
 
         getDetails.getTestDetails( req.body.id, function(returnData) {
-            console.log(returnData)
+            
             for(var x =0;x<returnData.questions.length;x++){
                 rightAnswer.push(returnData.questions[x].answer);
             }

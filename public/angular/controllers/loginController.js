@@ -80,6 +80,4 @@ myApp.controller('loginController',['$window','$http','$routeParams','testServic
     // if he has then it saves the token and logs user in
 
 
-  this.passportSubmit();
-
 }]); // end controller
