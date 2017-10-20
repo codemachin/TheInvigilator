@@ -10,7 +10,8 @@ var expressJwt = require('express-jwt');
 var secret = require("./../../libs/jwtSecret").secret;
 var responseGenerator = require('./../../libs/responseGenerator');
 var crypto = require('./../../libs/crypto');
-var key = "JAICRYPTO-AES256"
+var key = "JAICRYPTO-AES256";
+var auth = require("./../../middlewares/auth");
 
 
 module.exports.controllerFunction = function(app) {
@@ -121,7 +122,7 @@ module.exports.controllerFunction = function(app) {
 
 //////////////////////////////////////////api to log in user///////////////////////////////////////
 
-    userRouter.post('/login',function(req,res){
+    userRouter.post('/login',auth.login,function(req,res){
 
         var passwordDb = crypto.encrypt(req.body.password,key);
 
@@ -132,7 +133,7 @@ module.exports.controllerFunction = function(app) {
             }
             else if(foundUser==null || foundUser==undefined || foundUser._id==undefined){
 
-                var myResponse = responseGenerator.generate(true,"user not found. Check your email and password",404,null);
+                var myResponse = responseGenerator.generate(true,"Incorrect Password. Please check again.",404,null);
                 res.send(myResponse);
 
             }

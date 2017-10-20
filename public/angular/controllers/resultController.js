@@ -26,7 +26,6 @@ myApp.controller('resultController',['$window','$http','$routeParams','testServi
             window.location="#/"
           }
           else if(response.data.status==200){
-            console.log(response.data.data)
           	main.result= response.data.data;
 
             // get the user details of the result

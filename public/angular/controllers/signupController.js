@@ -12,6 +12,16 @@ myApp.controller('signupController',['$window','$http','$routeParams','testServi
 
   this.signup = function(){
 
+    if (!main.firstName || !main.lastName || !main.email || !main.password || !main.mobile) {
+      return alert("Please enter complete information");
+    }else if(main.password.length<6){
+      return alert("Minimum password length must be 6")
+    }else if(main.firstName==main.lastName){
+      return alert("firstName and lastName cannot be the same. Please check again.")
+    }else if(main.mobile.toString().length<6){
+      return alert("Mobile number cannot be less than 6 digits")
+    }
+
     var myData = {
 
             firstName: main.firstName,
