@@ -14,8 +14,8 @@ exports.passportMiddleware = function(passport,app) {
     passport.use(new GoogleStrategy({
         clientID:     GOOGLE_CLIENT_ID,
         clientSecret: GOOGLE_CLIENT_SECRET,
-        callbackURL: "http://theinvigilator.ga/auth/google/callback",
-        /*callbackURL: "http://localhost:3000/auth/google/callback",*/
+        /*callbackURL: "http://theinvigilator.ga/auth/google/callback",*/
+        callbackURL: "http://localhost:3000/auth/google/callback",
         passReqToCallback   : true
       },
       function(request, accessToken, refreshToken, profile, done) {                 
@@ -27,13 +27,13 @@ exports.passportMiddleware = function(passport,app) {
     // setting up client id and client secret
 
     passport.use(new Strategy({
-        clientID: '131859044140081',
+        /*clientID: '131859044140081',
         clientSecret: 'e6225b5ff28d6dd54c7baa7b218132df',
-        callbackURL: 'http://theinvigilator.ga/login/facebook/return',
+        callbackURL: 'http://theinvigilator.ga/login/facebook/return',*/
         /////////////////////////////////////// down - localhost ////////////////////////////////////////
-        /*clientID: '359580641139615',
+        clientID: '359580641139615',
         clientSecret: '42bb227a973945d92e5ea283acdf3bab',
-        callbackURL: 'http://localhost:3000/login/facebook/return',*/
+        callbackURL: 'http://localhost:3000/login/facebook/return',
         enableProof: true,
         profileFields: ['id', 'emails', 'name']
       },
