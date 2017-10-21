@@ -128,7 +128,7 @@
                             <th>
                               Percentage obtained
                             </th>
-                            <td ng-show="myResult.totalCorrect*myResult.test.marksEach)/(myResult.test.totalQuestions*myResult.test.marksEach)*100">
+                            <td ng-show="myResult.totalCorrect*myResult.test.marksEach/myResult.test.totalQuestions*myResult.test.marksEach*100">
                               {{(myResult.totalCorrect*myResult.test.marksEach)/(myResult.test.totalQuestions*myResult.test.marksEach)*100}} %
                             </td>
                           </tr>
