@@ -29,12 +29,19 @@
   </div>
 </nav>
 
+<!--====================================nav bar ends ======================================-->
+
+<!--==================================== warning for accidental save ======================================-->
+
 <div ng-if="myLive.savmes" class="alert alert-warning" role="alert" style="text-align: center;">
 	<h3>Recent test was saved on {{myLive.savmes | date:'medium'}}</h3>
 	(due to accidental refresh or back which was not supposed to happen)
 </div>
 
 <div class="container">
+
+	<!--==================================== main test card ======================================-->
+	
 	<div class="card" style="margin-top: 40px;padding: 3%">
 		<div ng-if="myLive.min" class="alert text-center alert-danger" role="alert">
 			<h3 style="margin-bottom: 30px; display: inline;">Time Remaining ~ </h3><h1 style="margin-bottom: 30px;display: inline;">{{myLive.min}} mins {{myLive.sec}} secs</h1>

@@ -34,9 +34,13 @@
   </div>
 </nav>
 
+<!--====================================nav bar ends ======================================-->
+
 <div class="col-12">
 	<div class="row row-eq-height" >
 		<div class="col-md-8">
+
+			<!--==================================== left hand test details and question input card ======================================-->
 			
 			<div class="card" style="background: #302D36;margin-top: 90px">
 				<div class="container-fluid input" style="padding: 4%;line-height: 20px;color: #ECEFF1">
@@ -92,6 +96,9 @@
 					      <button type="button" ng-click="myQuestionCreate.create()" class="btn btn-light">Create Question!</button>
 					      <a href="#/manageTest" class="btn btn-light">back to manage</a>
 					 </div>
+
+					 <!--====================================question edit card ======================================-->
+
 					 <div ng-show="myQuestionCreate.edif">
 					 	<div class="form-group">
 			              <label for="exampleInputEmail1">Question number {{myQuestionCreate.indexhel+1}}</label>
@@ -138,6 +145,9 @@
 		</div>
 		<div class="col-md-4" style="height: 100vh;overflow-y: scroll">
 			<div class="container" >
+
+				<!--==================================== certical scroll showing all question starts here ======================================-->
+				
 				<div style="margin-top: 90px">
 					<h1 ng-hide="myQuestionCreate.items.data.questions.length>0" style="color: #ECEFF1">No Questions Created</h1>
 					<div ng-repeat="question in myQuestionCreate.items.data.questions">

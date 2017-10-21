@@ -30,8 +30,12 @@
   </div>
 </nav>
 
+<!--====================================nav bar ends ======================================-->
+
 
 <div class="container" style="padding-top: 30px">
+
+    <!--==================================== error card if no test created ======================================-->
 
     <div class="card text-white bg-primary" ng-show="myDash.items.data.length<1" style="padding: 2%;align-items: center;color: #004d40;margin: 4% 8%;">
       <h1>No test has been created yet. Please contact the admin or come again later.</h1><br>
@@ -40,6 +44,9 @@
 
     <div class="row">
       <div ng-hide="myDash.items.data.length<1" class="card text-white bg-info" style="color: #004d40;margin:15px;width: 100%">
+
+        <!--==================================== each test card with test details ======================================-->
+        
         <div class="card-header">
           <h4>Please note :</h4>
         </div>

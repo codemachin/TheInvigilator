@@ -19,6 +19,8 @@
   </div>
 </div>
 
+<!--==================================== loader ends ======================================-->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <img class="navbar-brand img-responsive" src="img/file.png" alt="logo" style="max-width: 35px">
   <a class="navbar-brand" ng-show = "myDash.email!='admin@admin.com'" href="#/home" style='font-family: "Raleway", Helvetica, Arial, sans-serif;'><b>The Invigilator</b></a>
@@ -57,6 +59,8 @@
   </div>
 </nav>
 
+<!--====================================nav bar ends ======================================-->
+
 <div class="container-fluid" style="margin-top: 50px">
   <div class="card text-white bg-primary" ng-show="myDash.items.length<1" style="padding: 2%;align-items: center;color: #004d40;margin: 0 8%;">
     <h1>Analytics cannot be shown as no test is taken.</h1><br>
@@ -64,6 +68,9 @@
   </div>
   <div class="row" ng-show="myDash.items.length>0">
     <div class="col-sm-6">
+
+      <!--==================================== 1st analytics card ======================================-->
+
       <div class="card mb-3">
         <div class="card-header">
           <i class="fa fa-area-chart"></i>
@@ -85,6 +92,9 @@
     </div>
     <div ng-show="myDash.email!='admin@admin.com'" class="col-sm-6">
       <div class="card mb-3">
+
+        <!--==================================== recent results card ======================================-->
+
         <div class="card-header">
           <i class="fa fa-area-chart"></i>
           Tests given (last 4)
@@ -102,6 +112,9 @@
     </div>
   </div>
   <div ng-show="myDash.items.length>0" id = "pa">Performance Analysis</div>
+
+  <!--==================================== area chart starts here  ======================================-->
+
   <div ng-show="myDash.items.length>0" class="card mb-3">
     <div class="card-header">
       <i class="fa fa-area-chart"></i>
@@ -115,8 +128,13 @@
     </div>
   </div>
 
+  <!--==================================== area chart ends here  ======================================-->
+
   <div  ng-show="myDash.items.length>0" class="row">
     <div class="col-md-8">
+
+      <!--==================================== bar graph starts here ======================================-->
+
       <div class="card mb-3">
         <div class="card-header">
           <i class="fa fa-bar-chart"></i>
@@ -145,8 +163,14 @@
           Last updated at {{myDash.lastUpdated | date : 'medium'}}
         </div>
       </div>
+
+      <!--==================================== bar graph  ends here ======================================-->
+
     </div>
     <div class="col-md-4">
+
+      <!--==================================== pie chart starts ======================================-->
+
       <div class="card mb-3">
         <div class="card-header">
           <i class="fa fa-pie-chart"></i>
@@ -161,6 +185,9 @@
           Last updated at {{myDash.lastUpdated | date : 'medium'}}
         </div>
       </div>
+
+      <!--==================================== pie chart ends ======================================-->
+      
     </div>
   </div>
 </div>
