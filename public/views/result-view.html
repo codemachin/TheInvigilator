@@ -110,9 +110,7 @@
                               Total Marks
                             </th>
                             <td>
-                              <span ng-show="myResult.test.totalQuestions && myResult.test.marksEach">
                                 {{myResult.test.totalQuestions*myResult.test.marksEach}}
-                              </span>
                             </td>
                           </tr>
                           <tr>
@@ -128,9 +126,7 @@
                               Total Marks Scored
                             </th>
                             <td>
-                              <span ng-show="myResult.totalCorrect && myResult.test.marksEach">
                                 {{myResult.totalCorrect*myResult.test.marksEach}}
-                              </span>
                             </td>
                           </tr>
                           <tr>
@@ -138,9 +134,7 @@
                               Percentage obtained
                             </th>
                             <td>
-                              <span ng-show="myResult.totalCorrect && myResult.test.marksEach && myResult.test.totalQuestions">
                                 {{(myResult.totalCorrect*myResult.test.marksEach)/(myResult.test.totalQuestions*myResult.test.marksEach)*100}} %
-                              </span>
                             </td>
                           </tr>
                           <tr>
