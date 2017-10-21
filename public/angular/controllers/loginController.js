@@ -1,4 +1,4 @@
-myApp.controller('loginController',['$window','$http','$routeParams','testService',function($window,$http,$routeParams,testService) {
+myApp.controller('loginController',['$window','$http','testService',function($window,$http,testService) {
 
   //create a context
   var main = this;
@@ -49,7 +49,7 @@ myApp.controller('loginController',['$window','$http','$routeParams','testServic
 
   // check if user has logged in via facebook or google
   // if yes then send him to home
-  this.passportSubmit= function(){
+  var passportSubmit= function(){
     testService.passportLogin()
       .then(function successCallback(response) {
           
@@ -78,6 +78,8 @@ myApp.controller('loginController',['$window','$http','$routeParams','testServic
       
   } // this function runs automatically to check if user has logged in through passport
     // if he has then it saves the token and logs user in
+
+  passportSubmit();
 
 
 }]); // end controller
