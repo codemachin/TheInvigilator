@@ -1,0 +1,52 @@
+Urls of my api - 
+
+base url(for localhost) - https://localhost:3000/api/v1
+base url(for live server) - https://theinvigilator.ga/api/v1
+
+Resources - 
+
+1) POST /tests/create                 - api for creating tests
+                                        Required fields - name, question, details, marks each, total questions, totalTime
+
+2) PUT /tests/:id/edit                - api for editing test
+                                        Required fields - name, question, details, marks each, total questions, totalTime
+
+3) POST /tests/add/question/:id       - api to add a single question
+										Required fields - question, optionA, optionB, optionC, optionD, answer
+
+4) POST /tests/edit/question/:no/:id  - api to edit a particular question.
+							            Required fields - question, optionA, optionB, optionC, optionD, answer
+
+5) POST /tests/:id/questiondelete     - api to delete a particular question
+	
+6) POST /tests/:id/delete             - api for deleting a test
+
+7) GET /tests/:id                     - api for getting a single test
+
+8) GET /tests/all                     - api for getting all tests
+
+9) GET /tests/allResults/:id          - api for getting all the results for a user
+
+10) GET /tests/allMarks               - api for getting all the results
+
+11) GET /getProfile                   - api to log in to google or facebook account whichever requested
+
+12) POST /forgot                      - api to request new password
+				                        Required fields - email
+
+13) POST /reset/                      - api to update new password on valid token
+
+14) POST /users/signup                - api to signup new user with all necessary details
+						                Required fields - firstName, lastName, email, mobile, password
+
+15) POST /liveTest/answerSave         - api to save answer
+						                Required fields - userid, testid, useranswer, correctanswer, timetaken
+
+16) GET /liveTest/:id                 - api to get a particular result
+
+17) POST /users/login                 - api to login user
+										Required fields - email, password
+
+18) GET /users/all                    - api to get all users
+
+19) GET /users/:id                    - api to get a particular user
