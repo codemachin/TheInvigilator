@@ -2,10 +2,11 @@ myApp.controller('loginController',['$window','$http','testService',function($wi
 
   //create a context
   var main = this;
-  this.email="";
-  this.password="";
+  
 
   this.login = function(){
+
+    
 
   	var myData = {
             email: main.email,
@@ -56,7 +57,7 @@ myApp.controller('loginController',['$window','$http','testService',function($wi
             if (response.data.error==false){
 
               $window.sessionStorage.token = response.data.data;
-              window.location = "#/home"
+              return window.location = "#/home"
 
 
             }else if(response.data.status==404){
